@@ -1,6 +1,5 @@
 import React from "react";
 import Team from "./Team";
-import Timer from "./Timer";
 import BottomRow from "./BottomRow";
 
 //Creates a scoreboard with two teams
@@ -14,7 +13,7 @@ function Scoreboard(props) {
     <section className="scoreboard">
       <div className="topRow">
         <Team {...teams.home} score={homeScore} />
-        <Timer />
+        <div className="timer">12:00</div>
         <Team {...teams.away} score={awayScore} />
       </div>
       <BottomRow />

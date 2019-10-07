@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import "./App.css";
 import Team from "./components/Team";
+import TeamButton from "./components/TeamButton";
 import BottomRow from "./BottomRow";
 
 function App() {
@@ -9,29 +10,38 @@ function App() {
   const [homeScore, setHomeScore] = useState(0);
   const [awayScore, setAwayScore] = useState(0);
 
-  const TOUCHDOWN = 7;
-  const FIELDGOAL = 3;
+  const team = {
+    home: {
+      name: "Lions",
+      isHomeTeam: true
+    },
+    away: {
+      name: "Tigers",
+      isHomeTeam: false
+    }
+  }
+
+  function addScore(teamName, amount) {
+    if (teamName === "Lions") {
+      setHomeScore(homeScore + amount);
+    } else {
+      setAwayScore(awayScore + amount);
+    }
+  }
 
   return (
     <div className="container">
       <section className="scoreboard">
         <div className="topRow">
-          <Team name="Lions" isHomeTeam={true} score={homeScore} />
+          <Team {...team.home} score={homeScore} />
           <div className="timer">00:03</div>
-          <Team name="Tigers" isHomeTeam={false} score={awayScore} />
+          <Team {...team.away} score={awayScore} />
         </div>
         <BottomRow />
       </section>
       <section className="buttons">
-        <div className="homeButtons">
-          {/* TODO STEP 4 - Now we need to attach our state setter functions to click listeners. */}
-          <button className="homeButtons__touchdown" onClick={() => setHomeScore(homeScore + TOUCHDOWN)}>Home Touchdown</button>
-          <button className="homeButtons__fieldGoal" onClick={() => setHomeScore(homeScore + FIELDGOAL)}>Home Field Goal</button>
-        </div>
-        <div className="awayButtons">
-          <button className="awayButtons__touchdown" onClick={() => setAwayScore(awayScore + TOUCHDOWN)}>Away Touchdown</button>
-          <button className="awayButtons__fieldGoal" onClick={() => setAwayScore(awayScore + FIELDGOAL)}>Away Field Goal</button>
-        </div>
+        <TeamButton {...team.home} clickHandler={addScore} />
+        <TeamButton {...team.away} clickHandler={addScore} />
       </section>
     </div>
   );

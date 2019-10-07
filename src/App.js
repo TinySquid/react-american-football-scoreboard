@@ -34,6 +34,7 @@ function App() {
     }
   }
 
+  //Resets the scores for both teams
   function resetGame() {
     setHomeScore(0);
     setAwayScore(0);

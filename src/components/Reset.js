@@ -1,13 +1,15 @@
 import React from "react";
 
-function Buttons(props) {
-  const resetGame = props.resetHandler;
+//Returns a reset button used to clear scoreboard
+function ResetButton(props) {
 
+  //Callback to reset scoreboard
+  const resetGame = props.resetHandler;
 
   return (
     <button onClick={() => resetGame()}>Reset Game</button>
   )
 }
 
-export default Buttons;
+export default ResetButton;
 

@@ -1,9 +1,8 @@
 //TODO: STEP 1 - Import the useState hook.
 import React, { useState } from "react";
 import "./App.css";
-import Team from "./components/Team";
+import Scoreboard from "./components/Scoreboard";
 import Buttons from "./components/Buttons";
-import BottomRow from "./BottomRow";
 
 function App() {
   //TODO: STEP 2 - Establish your applictaion's state with some useState hooks.  You'll need one for the home score and another for the away score.
@@ -31,14 +30,7 @@ function App() {
 
   return (
     <div className="container">
-      <section className="scoreboard">
-        <div className="topRow">
-          <Team {...teams.home} score={homeScore} />
-          <div className="timer">00:03</div>
-          <Team {...teams.away} score={awayScore} />
-        </div>
-        <BottomRow />
-      </section>
+      <Scoreboard teams={teams} homeScore={homeScore} awayScore={awayScore} />
       <Buttons teams={teams} clickHandler={addScore} />
     </div>
   );

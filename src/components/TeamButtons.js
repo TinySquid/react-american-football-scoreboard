@@ -1,6 +1,6 @@
 import React from 'react';
 
-function TeamButton(props) {
+function TeamButtons(props) {
   const TOUCHDOWN = 7;
   const FIELDGOAL = 3;
 
@@ -18,4 +18,4 @@ function TeamButton(props) {
   )
 }
 
-export default TeamButton;
+export default TeamButtons;

@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import "./App.css";
 import Team from "./components/Team";
-import TeamButton from "./components/TeamButton";
+import Buttons from "./components/Buttons";
 import BottomRow from "./BottomRow";
 
 function App() {
@@ -10,7 +10,7 @@ function App() {
   const [homeScore, setHomeScore] = useState(0);
   const [awayScore, setAwayScore] = useState(0);
 
-  const team = {
+  const teams = {
     home: {
       name: "Lions",
       isHomeTeam: true
@@ -33,16 +33,13 @@ function App() {
     <div className="container">
       <section className="scoreboard">
         <div className="topRow">
-          <Team {...team.home} score={homeScore} />
+          <Team {...teams.home} score={homeScore} />
           <div className="timer">00:03</div>
-          <Team {...team.away} score={awayScore} />
+          <Team {...teams.away} score={awayScore} />
         </div>
         <BottomRow />
       </section>
-      <section className="buttons">
-        <TeamButton {...team.home} clickHandler={addScore} />
-        <TeamButton {...team.away} clickHandler={addScore} />
-      </section>
+      <Buttons teams={teams} clickHandler={addScore} />
     </div>
   );
 }

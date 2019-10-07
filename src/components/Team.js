@@ -1,12 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
+
 
 function Team(props) {
-  const [teamName] = useState(props.name);
-  const [score, setScore] = useState(props.initialScore);
-  const teamLocale = props.isHomeTeam === "true" ? 'home' : 'away';
-  // console.log(props.isHomeTeam);
+  const teamName = props.name;
+  const teamLocale = props.isHomeTeam ? 'home' : 'away';
 
-
+  let score = props.score;
 
   return (
     <div className={teamLocale}>

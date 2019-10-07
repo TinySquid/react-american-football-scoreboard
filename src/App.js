@@ -16,17 +16,9 @@ function App() {
     <div className="container">
       <section className="scoreboard">
         <div className="topRow">
-          <Team name="Lions" isHomeTeam="true" initialScore="0" />
-          {/* <div className="home">
-            <h2 className="home__name">Lions</h2>
-            <div className="home__score">{homeScore}</div>
-          </div > */}
+          <Team name="Lions" isHomeTeam={true} score={homeScore} />
           <div className="timer">00:03</div>
-          <Team name="Tigers" isHomeTeam="false" initialScore="0" />
-          {/* <div className="away">
-            <h2 className="away__name">Tigers</h2>
-            <div className="away__score">{awayScore}</div>
-          </div> */}
+          <Team name="Tigers" isHomeTeam={false} score={awayScore} />
         </div>
         <BottomRow />
       </section>
@@ -37,7 +29,7 @@ function App() {
           <button className="homeButtons__fieldGoal" onClick={() => setHomeScore(homeScore + FIELDGOAL)}>Home Field Goal</button>
         </div>
         <div className="awayButtons">
-          <button className="awayButtons__touchdown" onClick={() => Team.setScore(awayScore + TOUCHDOWN)}>Away Touchdown</button>
+          <button className="awayButtons__touchdown" onClick={() => setAwayScore(awayScore + TOUCHDOWN)}>Away Touchdown</button>
           <button className="awayButtons__fieldGoal" onClick={() => setAwayScore(awayScore + FIELDGOAL)}>Away Field Goal</button>
         </div>
       </section>

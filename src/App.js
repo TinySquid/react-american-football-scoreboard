@@ -1,41 +1,49 @@
 //TODO: STEP 1 - Import the useState hook.
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
-import BottomRow from "./BottomRow";
+import Scoreboard from "./components/Scoreboard";
+import Buttons from "./components/Buttons";
+
+// "When data is being consumed in multiple components it is probably best to centralize that data in state in a top level component" - Lambda TK
 
 function App() {
-  //TODO: STEP 2 - Establish your applictaion's state with some useState hooks.  You'll need one for the home score and another for the away score.
+
+  //Score for both teams.
+  const [homeScore, setHomeScore] = useState(0);
+  const [awayScore, setAwayScore] = useState(0);
+
+  //Teams object used to pass team data to components
+  const teams = {
+    home: {
+      name: "Lions",
+      isHomeTeam: true
+    },
+    away: {
+      name: "Tigers",
+      isHomeTeam: false
+    }
+  }
+
+  //addScore function as described by stretch goal
+  //Take a team name and add to the score
+  function addScore(teamName, amount) {
+    if (teamName === "Lions") {
+      setHomeScore(homeScore + amount);
+    } else {
+      setAwayScore(awayScore + amount);
+    }
+  }
+
+  //Resets the scores for both teams
+  function resetGame() {
+    setHomeScore(0);
+    setAwayScore(0);
+  }
 
   return (
     <div className="container">
-      <section className="scoreboard">
-        <div className="topRow">
-          <div className="home">
-            <h2 className="home__name">Lions</h2>
-
-            {/* TODO STEP 3 - We need to change the hardcoded values in these divs to accept dynamic values from our state. */}
-
-            <div className="home__score">32</div>
-          </div>
-          <div className="timer">00:03</div>
-          <div className="away">
-            <h2 className="away__name">Tigers</h2>
-            <div className="away__score">32</div>
-          </div>
-        </div>
-        <BottomRow />
-      </section>
-      <section className="buttons">
-        <div className="homeButtons">
-          {/* TODO STEP 4 - Now we need to attach our state setter functions to click listeners. */}
-          <button className="homeButtons__touchdown">Home Touchdown</button>
-          <button className="homeButtons__fieldGoal">Home Field Goal</button>
-        </div>
-        <div className="awayButtons">
-          <button className="awayButtons__touchdown">Away Touchdown</button>
-          <button className="awayButtons__fieldGoal">Away Field Goal</button>
-        </div>
-      </section>
+      <Scoreboard teams={teams} homeScore={homeScore} awayScore={awayScore} />
+      <Buttons teams={teams} clickHandler={addScore} resetHandler={resetGame} />
     </div>
   );
 }
